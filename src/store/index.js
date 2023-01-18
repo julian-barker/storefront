@@ -12,6 +12,6 @@ const reducers = combineReducers({
   cart: cartReducer,
 });
 
-export default () => {
+export default function store() {
   return createStore(reducers, composeWithDevTools());
 };
