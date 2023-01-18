@@ -5,8 +5,6 @@ import "./style.css";
 
 const Categories = () => {
   const { categories, activeCategory } = useSelector(state => state);
-  console.log('🚀 ~ file: index.jsx:8 ~ Categories ~ activeCategory', activeCategory);
-  console.log('🚀 ~ file: index.jsx:8 ~ Categories ~ categories', categories);
   const dispatch = useDispatch();
   
   function handleClick(category) {
@@ -18,7 +16,7 @@ const Categories = () => {
   }
 
   return (
-    <Breadcrumbs aria-label="breadcrumb">
+    <Breadcrumbs id='categories' aria-label="breadcrumb">
       <ListItemButton 
         sx={
           activeCategory === 'all' ? { color: 'darkblue', backgroundColor: 'lightgray' } : { color: 'inherit' }
