@@ -14,7 +14,7 @@ const Products = () => {
 
   // useEffect(() => {
   //   async function fetchData() {
-  //     const response = await Promise.allSettled(
+  //     const response = await Promise.allSettled
   //       products.map(async product => {
   //         const options = {
   //           method: 'GET',
@@ -59,6 +59,9 @@ const Products = () => {
               margin: '1rem',
               backgroundColor: 'gray',
             }}>
+            <div style={{width: '100%', 'overflow-x': 'clip'}}>
+              <img src={product.image} alt={product.name} height='200' style={{'object-fit': 'contain'}} />
+            </div>
             <h3>{product.name}</h3>
             <div>Price: ${product.price}</div>
             <div>Stock: {product.inStock}</div>
