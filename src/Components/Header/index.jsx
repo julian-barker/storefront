@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
 import Cart from './Cart';
 
 import "./style.css";
