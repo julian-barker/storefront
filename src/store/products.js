@@ -16,22 +16,35 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 //   { name: 'Limestone', category: 'rocks', price: 2.39, inStock: 90, image: './assets/limestone.jpg' },
 // ];
 
+const API_URL = import.meta.env.VITE_API_URL;
+// console.log('🚀 ~ file: products.js:20 ~ API_URL', API_URL);
 
 const SET_PRODUCTS = 'SET_PRODUCTS';
+const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 const ADD_PRODUCT = 'ADD_PRODUCT';
 
-const setProducts = createAction(SET_PRODUCTS);
+const setProductsAction = createAction(SET_PRODUCTS);
+export const updateProductAction = createAction(UPDATE_PRODUCT);
 
 export const getProducts = () => async (dispatch, getState) => {
-  const response = await fetch('https://api-js401.herokuapp.com/api/v1/products').then(res => res.json());
-  console.log('🚀 ~ file: products.js:27 ~ getProducts ~ response', response);
-  dispatch(setProducts(response.results));
+  const response = await fetch(`${API_URL}/products`).then(res => res.json());
+  // console.log('🚀 ~ file: products.js:27 ~ getProducts ~ response', response);
+  dispatch(setProductsAction(response.results));
 };
 
 const reducer =  createReducer(
   [],
   {
     [SET_PRODUCTS]: (state, action) => action.payload,
+    [UPDATE_PRODUCT]: (state, action) => {
+      const products = state.map(product => {
+        if(product._id === action.payload._id) {
+          return action.payload;
+        }
+        return product;
+      });
+      return products;
+    },
     [ADD_PRODUCT]: (state, action) => [...state, action.payload],
   },
 

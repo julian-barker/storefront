@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Container, Grid, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../store/products";
+import { addToCart } from "../../store/cart";
 
 const Products = () => {
   const { products, activeCategory } = useSelector(state => state);
@@ -9,10 +10,11 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getProducts());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  function addToCart(product) {
-    dispatch({ type: 'ADD', payload: product });
+  function handleAdd(product) {
+    dispatch(addToCart(product));
   } 
 
   const displayedProducts =  activeCategory === 'all' ? products : products.filter((product) => product.category === activeCategory);
@@ -46,7 +48,7 @@ const Products = () => {
             <Button 
               variant="contained" 
               sx={{ marginTop: '1rem' }}
-              onClick={() => addToCart(product)}>
+              onClick={() => handleAdd(product)}>
               Add to Cart
             </Button>
           </Grid>

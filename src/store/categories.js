@@ -13,7 +13,7 @@ const setCategories = createAction(SET_CATEGORIES);
 
 export const getCategories = () => async (dispatch, getState) => {
   const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories').then(res => res.json());
-  console.log('🚀 ~ file: categories.js:16 ~ response', response);
+  // console.log('🚀 ~ file: categories.js:16 ~ response', response);
   dispatch(setCategories(response.results));
 };
 
