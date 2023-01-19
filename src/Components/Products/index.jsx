@@ -1,13 +1,22 @@
+import { useEffect } from 'react';
 import { Container, Grid, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../store/products";
 
 const Products = () => {
-  const { products } = useSelector(state => state);
+  const { products, activeCategory } = useSelector(state => state);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
   
   function addToCart(product) {
     dispatch({ type: 'ADD', payload: product });
   } 
+
+  const displayedProducts =  activeCategory === 'all' ? products : products.filter((product) => product.category === activeCategory);
+
 
   return (
     <Container>
@@ -17,9 +26,9 @@ const Products = () => {
         sx={{
           padding: '2rem 0',
         }}>
-        {products.map((product) => 
+        {displayedProducts.map((product) => 
           <Grid item xs={2} sm={3} md={3} 
-            key={product.name}
+            key={product._id}
             sx={{
               border: '1px solid black',
               borderRadius: '5px',
