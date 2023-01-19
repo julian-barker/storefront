@@ -37,13 +37,8 @@ const reducer =  createReducer(
   {
     [SET_PRODUCTS]: (state, action) => action.payload,
     [UPDATE_PRODUCT]: (state, action) => {
-      const products = state.map(product => {
-        if(product._id === action.payload._id) {
-          return action.payload;
-        }
-        return product;
-      });
-      return products;
+      const { payload } = action;
+      return state.map(product => product._id === payload._id ? payload : product);
     },
     [ADD_PRODUCT]: (state, action) => [...state, action.payload],
   },
