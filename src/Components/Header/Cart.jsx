@@ -4,6 +4,7 @@ import { Button, Popover, IconButton } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import { Link } from '@tanstack/react-router';
 
 const Cart = () => {
   const { cart } = useSelector(state => state);
@@ -51,6 +52,7 @@ const Cart = () => {
         ))}
         <div id='total'>Total: ${total}</div>
         <RemoveShoppingCartIcon onClick={() => dispatch({ type: 'CLEAR' })} />
+        <Link to='/cart'>View Cart</Link>
       </Popover>  
     </div>
   );

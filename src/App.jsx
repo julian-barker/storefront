@@ -25,7 +25,7 @@ const home = rootRoute.createRoute({
 });
 
 const cart = rootRoute.createRoute({
-  path: '/',
+  path: '/cart',
   component: () => (
     <>
       <Header />
