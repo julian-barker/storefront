@@ -1,4 +1,4 @@
-import Cart from './Cart';
+import Cart from './CartButton';
 import { Link } from '@tanstack/react-router';
 
 import "./style.css";

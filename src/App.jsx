@@ -3,12 +3,13 @@ import Header from './Components/Header'
 import Categories from './Components/Categories';
 import {
   createRouteConfig,
-  createReactRouter,
+  ReactRouter,
   RouterProvider,
   Outlet
 } from '@tanstack/react-router';
 
 import './App.css'
+import Cart from './Components/Cart';
 
 const rootRoute = createRouteConfig();
 
@@ -29,7 +30,7 @@ const cart = rootRoute.createRoute({
   component: () => (
     <>
       <Header />
-      <Products />
+      <Cart />
       <Outlet />
     </>
   )
