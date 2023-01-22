@@ -38,7 +38,7 @@ const cart = rootRoute.createRoute({
 
 const routeConfig = rootRoute.addChildren([home, cart]);
 
-const router = createReactRouter(routeConfig);
+const router = new ReactRouter(routeConfig);
 
 function App() {
   return (
