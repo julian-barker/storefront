@@ -4,7 +4,7 @@ header {
   border-bottom: 1px solid #e1e4e8;
 }
 
-header > div {
+#header-container {
   display: flex;
   justify-content: space-between;
   gap: 2rem;

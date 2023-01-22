@@ -3,20 +3,27 @@ import Header from './Components/Header'
 import Categories from './Components/Categories';
 import {
   createRouteConfig,
-  createReactRouter,
+  ReactRouter,
   RouterProvider,
   Outlet
 } from '@tanstack/react-router';
 
 import './App.css'
+import Cart from './Components/Cart';
 
-const rootRoute = createRouteConfig();
-
-const home = rootRoute.createRoute({
-  path: '/',
+const rootRoute = createRouteConfig({
   component: () => (
     <>
       <Header />
+      <Outlet />
+    </>
+  ),
+});
+
+const homeRoute = rootRoute.createRoute({
+  path: '/',
+  component: () => (
+    <>
       <Categories />
       <Products />
       <Outlet />
@@ -24,25 +31,23 @@ const home = rootRoute.createRoute({
   )
 });
 
-const cart = rootRoute.createRoute({
+const cartRoute = rootRoute.createRoute({
   path: '/cart',
   component: () => (
     <>
-      <Header />
-      <Products />
+      <Cart />
       <Outlet />
     </>
   )
 });
 
-const routeConfig = rootRoute.addChildren([home, cart]);
+const routeConfig = rootRoute.addChildren([homeRoute, cartRoute]);
 
-const router = createReactRouter(routeConfig);
+const router = new ReactRouter({ routeConfig });
 
 function App() {
   return (
-    <RouterProvider router={router} >
-    </RouterProvider>
+    <RouterProvider router={router} />
   );
 }
 

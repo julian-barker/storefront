@@ -41,18 +41,25 @@ const Cart = () => {
           vertical: 'top',
           horizontal: 'right',
         }}
+        // sx={{
+        //   display: 'flex',
+        //   width: 500,
+        //   p: 2,
+        //   mx: 0.5
+        // }}
       >
         {cart.map((item) => (
-          <div key={item.name}>
-            <span>{item.name} - {item.quantity}</span>
-            <IconButton aria-label="remove" onClick={() => dispatch({ type: 'REMOVE', payload: item })}>
-              <DeleteIcon />
-            </IconButton>
+          <div key={item._id}>
+            <span>{item.name} - qty: {item.quantity}
+              <IconButton aria-label="remove" onClick={() => dispatch({ type: 'REMOVE', payload: item })}>
+                <DeleteIcon />
+              </IconButton>
+            </span>
           </div>
         ))}
         <div id='total'>Total: ${total}</div>
         <RemoveShoppingCartIcon onClick={() => dispatch({ type: 'CLEAR' })} />
-        <Link to='/cart'>View Cart</Link>
+        <Link to='/cart' onClick={handleClose} >View Cart</Link>
       </Popover>  
     </div>
   );
