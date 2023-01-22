@@ -7,7 +7,7 @@ const Header = () => {
   
   return (
     <header className="header">
-      <div>
+      <div id='header-container'>
         <img src='../../assets/rainbow-godzilla.png' alt='the e-commerce site logo' height='90px'/>
         <Link to='/'>Shop of Rocks</Link>
         <Cart />

@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Button, IconButton } from "@mui/material";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { IconButton, Container } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Link } from '@tanstack/react-router';
+
+import './style.css';
 
 const Cart = () => {
   const { cart } = useSelector(state => state);
@@ -14,17 +14,38 @@ const Cart = () => {
   
   return (
     <div>
-      {cart.map((item) => (
-        <div key={item.name}>
-          <span>{item.name} - {item.quantity}</span>
-          <IconButton aria-label="remove" onClick={() => dispatch({ type: 'REMOVE', payload: item })}>
-            <DeleteIcon />
-          </IconButton>
-        </div>
-      ))}
-      <div id='total'>Total: ${total}</div>
-      <RemoveShoppingCartIcon onClick={() => dispatch({ type: 'CLEAR' })} />
-      <Link to='/cart'>View Cart</Link>
+      <h2>Your Cart</h2>
+      <Container>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Total Price</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          {cart.map((item) => (
+            <tr key={item.name}>
+              <td>{item.name}</td>
+              <td>{item.quantity}</td>
+              <td>${item.price}</td>
+              <td>${parseInt(item.price) *parseInt(item.quantity)}</td>
+              <td>
+                <IconButton aria-label="remove" onClick={() => dispatch({ type: 'REMOVE', payload: item })}>
+                  <DeleteIcon />
+                </IconButton>
+              </td>
+            </tr>
+          ))}
+        </table>
+        <hr />
+        <div id='total'>Total: ${total}</div>
+        
+        <RemoveShoppingCartIcon onClick={() => dispatch({ type: 'CLEAR' })} />
+        <Link to='/cart'>Checkout</Link>
+      </Container>
     </div>
   );
 };
